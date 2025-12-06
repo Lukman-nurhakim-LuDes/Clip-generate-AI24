@@ -1,13 +1,27 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { Helmet } from "react-helmet-async";
+import Navbar from "@/components/layout/Navbar";
+import HeroSection from "@/components/home/HeroSection";
+import FeaturesSection from "@/components/home/FeaturesSection";
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
+    <>
+      <Helmet>
+        <title>ViralClip - AI YouTube to TikTok/Shorts Clip Generator</title>
+        <meta 
+          name="description" 
+          content="Transform YouTube videos into viral TikTok and Shorts clips automatically. AI-powered viral moment detection, auto-reframe, and dynamic subtitles." 
+        />
+      </Helmet>
+
+      <div className="min-h-screen bg-background">
+        <Navbar />
+        <main>
+          <HeroSection />
+          <FeaturesSection />
+        </main>
       </div>
-    </div>
+    </>
   );
 };
 
