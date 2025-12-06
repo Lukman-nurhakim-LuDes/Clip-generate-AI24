@@ -168,10 +168,34 @@ const Analyzer = () => {
                       key={clip.id}
                       clip={clip}
                       index={index}
-                      onPlay={() => toast({ title: "Playing clip..." })}
-                      onDownload={() => toast({ title: "Downloading clip..." })}
-                      onRegenerate={() => toast({ title: "Regenerating clip..." })}
-                      onChangeStyle={() => toast({ title: "Opening style selector..." })}
+                      onPlay={() => toast({ title: "Playing clip...", description: "Video player akan ditambahkan dengan backend" })}
+                      onDownload={() => {
+                        toast({ 
+                          title: "⏳ Memproses Download...", 
+                          description: `Clip ${clip.startTime} - ${clip.endTime} sedang disiapkan` 
+                        });
+                        // Simulasi download - di produksi ini akan mengunduh file dari backend
+                        setTimeout(() => {
+                          const dummyContent = `ViralClip Export\n\nClip: ${clip.id}\nDuration: ${clip.duration}\nTimestamp: ${clip.startTime} - ${clip.endTime}\nSubtitle: ${clip.subtitle}\nViral Score: ${clip.score}%\n\n---\nCatatan: Ini adalah file placeholder.\nUntuk menghasilkan video clip sesungguhnya, diperlukan koneksi ke Lovable Cloud backend.`;
+                          
+                          const blob = new Blob([dummyContent], { type: 'text/plain' });
+                          const url = URL.createObjectURL(blob);
+                          const a = document.createElement('a');
+                          a.href = url;
+                          a.download = `viralclip-${clip.id}-${clip.startTime.replace(':', '-')}.txt`;
+                          document.body.appendChild(a);
+                          a.click();
+                          document.body.removeChild(a);
+                          URL.revokeObjectURL(url);
+                          
+                          toast({ 
+                            title: "✅ Download Berhasil!", 
+                            description: "File placeholder telah diunduh. Hubungkan ke Cloud untuk video asli." 
+                          });
+                        }, 1000);
+                      }}
+                      onRegenerate={() => toast({ title: "Regenerating clip...", description: "Fitur ini memerlukan Lovable Cloud" })}
+                      onChangeStyle={() => toast({ title: "Opening style selector...", description: "Pilih style di halaman Styles" })}
                     />
                   ))}
                 </div>
