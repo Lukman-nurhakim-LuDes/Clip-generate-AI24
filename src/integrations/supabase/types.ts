@@ -14,7 +14,128 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      clips: {
+        Row: {
+          created_at: string
+          duration: number
+          emotion_type: string | null
+          end_time: number
+          id: string
+          job_id: string
+          start_time: number
+          subtitle_style: string | null
+          thumbnail_url: string | null
+          title: string | null
+          transcript: string | null
+          user_id: string
+          video_url: string | null
+          viral_score: number | null
+        }
+        Insert: {
+          created_at?: string
+          duration: number
+          emotion_type?: string | null
+          end_time: number
+          id?: string
+          job_id: string
+          start_time: number
+          subtitle_style?: string | null
+          thumbnail_url?: string | null
+          title?: string | null
+          transcript?: string | null
+          user_id: string
+          video_url?: string | null
+          viral_score?: number | null
+        }
+        Update: {
+          created_at?: string
+          duration?: number
+          emotion_type?: string | null
+          end_time?: number
+          id?: string
+          job_id?: string
+          start_time?: number
+          subtitle_style?: string | null
+          thumbnail_url?: string | null
+          title?: string | null
+          transcript?: string | null
+          user_id?: string
+          video_url?: string | null
+          viral_score?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "clips_job_id_fkey"
+            columns: ["job_id"]
+            isOneToOne: false
+            referencedRelation: "video_jobs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          email: string | null
+          full_name: string | null
+          id: string
+          updated_at: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id: string
+          updated_at?: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      video_jobs: {
+        Row: {
+          created_at: string
+          error_message: string | null
+          id: string
+          status: string
+          transcript: string | null
+          updated_at: string
+          user_id: string
+          video_title: string | null
+          video_url: string
+        }
+        Insert: {
+          created_at?: string
+          error_message?: string | null
+          id?: string
+          status?: string
+          transcript?: string | null
+          updated_at?: string
+          user_id: string
+          video_title?: string | null
+          video_url: string
+        }
+        Update: {
+          created_at?: string
+          error_message?: string | null
+          id?: string
+          status?: string
+          transcript?: string | null
+          updated_at?: string
+          user_id?: string
+          video_title?: string | null
+          video_url?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
