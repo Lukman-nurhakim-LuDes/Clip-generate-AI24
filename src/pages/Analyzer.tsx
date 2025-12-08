@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { Link2, Brain, Download } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
+import MobileNav from "@/components/layout/MobileNav";
 import ProgressSteps from "@/components/analyzer/ProgressSteps";
 import ClipCard from "@/components/analyzer/ClipCard";
 import { VideoPlayerModal } from "@/components/analyzer/VideoPlayerModal";
@@ -236,21 +237,21 @@ const Analyzer = () => {
         <meta name="description" content="Analyze your YouTube video and generate viral clips automatically." />
       </Helmet>
 
-      <div className="min-h-screen bg-background">
+      <div className="min-h-[100dvh] bg-background pb-24 md:pb-16">
         <Navbar />
         
-        <main className="pt-28 pb-16 px-4">
+        <main className="pt-20 sm:pt-28 pb-8 px-3 sm:px-4">
           <div className="max-w-6xl mx-auto">
             {/* Header */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-center mb-12"
+              className="text-center mb-6 sm:mb-12"
             >
-              <h1 className="text-3xl sm:text-4xl font-bold mb-4">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-4">
                 Video <span className="gradient-text">Analyzer</span>
               </h1>
-              <p className="text-muted-foreground max-w-xl mx-auto">
+              <p className="text-sm sm:text-base text-muted-foreground max-w-xl mx-auto px-2">
                 Paste your YouTube link and let AI detect the most viral moments
               </p>
             </motion.div>
@@ -260,17 +261,17 @@ const Analyzer = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="glass-card p-4 mb-8 max-w-2xl mx-auto"
+              className="glass-card p-3 sm:p-4 mb-6 sm:mb-8 max-w-2xl mx-auto"
             >
-              <div className="flex flex-col sm:flex-row gap-3">
+              <div className="flex flex-col gap-2 sm:gap-3">
                 <div className="flex-1 relative">
-                  <Link2 className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+                  <Link2 className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-muted-foreground" />
                   <Input
                     type="url"
                     placeholder="https://youtube.com/watch?v=..."
                     value={videoUrl}
                     onChange={(e) => setVideoUrl(e.target.value)}
-                    className="pl-12 h-12 bg-muted/50 border-0 rounded-xl"
+                    className="pl-10 sm:pl-12 h-11 sm:h-12 bg-muted/50 border-0 rounded-xl text-sm sm:text-base"
                     disabled={isAnalyzing}
                   />
                 </div>
@@ -279,7 +280,7 @@ const Analyzer = () => {
                   size="lg"
                   onClick={startAnalysis}
                   disabled={isAnalyzing}
-                  className="min-w-[140px]"
+                  className="w-full h-11 sm:h-12"
                 >
                   {isAnalyzing ? "Analyzing..." : "Analyze"}
                 </Button>
@@ -291,10 +292,10 @@ const Analyzer = () => {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="glass-card p-6 max-w-xl mx-auto mb-8"
+                className="glass-card p-4 sm:p-6 max-w-xl mx-auto mb-6 sm:mb-8"
               >
-                <h3 className="font-semibold mb-4 flex items-center gap-2">
-                  <Brain className="w-5 h-5 text-primary" />
+                <h3 className="font-semibold mb-3 sm:mb-4 flex items-center gap-2 text-sm sm:text-base">
+                  <Brain className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
                   AI Analysis Progress
                 </h3>
                 <ProgressSteps
@@ -311,17 +312,18 @@ const Analyzer = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
               >
-                <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-xl font-semibold">
+                <div className="flex items-center justify-between mb-4 sm:mb-6 px-1">
+                  <h2 className="text-lg sm:text-xl font-semibold">
                     Generated Clips ({clips.length})
                   </h2>
-                  <Button variant="glass" size="sm" className="gap-2">
-                    <Download className="w-4 h-4" />
-                    Export All
+                  <Button variant="glass" size="sm" className="gap-2 text-xs sm:text-sm">
+                    <Download className="w-3 h-3 sm:w-4 sm:h-4" />
+                    <span className="hidden sm:inline">Export All</span>
+                    <span className="sm:hidden">Export</span>
                   </Button>
                 </div>
 
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <div className="grid grid-cols-2 gap-2 sm:gap-4 md:grid-cols-3 lg:grid-cols-4">
                   {clips.map((clip, index) => (
                     <ClipCard
                       key={clip.id}
@@ -356,6 +358,8 @@ const Analyzer = () => {
             navigate("/styles");
           }}
         />
+        
+        <MobileNav />
       </div>
     </>
   );
