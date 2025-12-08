@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { Check, Sparkles } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
+import MobileNav from "@/components/layout/MobileNav";
 import StyleCard from "@/components/styles/StyleCard";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
@@ -76,31 +77,31 @@ const Styles = () => {
         <meta name="description" content="Choose from various caption styles for your viral clips." />
       </Helmet>
 
-      <div className="min-h-screen bg-background">
+      <div className="min-h-[100dvh] bg-background pb-24 md:pb-16">
         <Navbar />
 
-        <main className="pt-28 pb-16 px-4">
+        <main className="pt-20 sm:pt-28 pb-8 px-3 sm:px-4">
           <div className="max-w-5xl mx-auto">
             {/* Header */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-center mb-12"
+              className="text-center mb-6 sm:mb-12"
             >
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-4">
-                <Sparkles className="w-4 h-4 text-primary" />
-                <span className="text-sm text-primary font-medium">Caption Templates</span>
+              <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-primary/10 border border-primary/20 mb-3 sm:mb-4">
+                <Sparkles className="w-3 h-3 sm:w-4 sm:h-4 text-primary" />
+                <span className="text-xs sm:text-sm text-primary font-medium">Caption Templates</span>
               </div>
-              <h1 className="text-3xl sm:text-4xl font-bold mb-4">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-4">
                 Choose Your <span className="gradient-text">Style</span>
               </h1>
-              <p className="text-muted-foreground max-w-xl mx-auto">
+              <p className="text-sm sm:text-base text-muted-foreground max-w-xl mx-auto px-2">
                 Select a caption style that matches your content's vibe
               </p>
             </motion.div>
 
             {/* Styles Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
+            <div className="grid grid-cols-2 gap-2 sm:gap-4 md:grid-cols-3 mb-6 sm:mb-8">
               {captionStyles.map((style, index) => (
                 <StyleCard
                   key={style.id}
@@ -119,13 +120,15 @@ const Styles = () => {
               transition={{ delay: 0.3 }}
               className="text-center"
             >
-              <Button variant="gradient" size="xl" onClick={handleApplyStyle} className="gap-2">
-                <Check className="w-5 h-5" />
+              <Button variant="gradient" size="lg" onClick={handleApplyStyle} className="gap-2 w-full sm:w-auto">
+                <Check className="w-4 h-4 sm:w-5 sm:h-5" />
                 Apply Selected Style
               </Button>
             </motion.div>
           </div>
         </main>
+        
+        <MobileNav />
       </div>
     </>
   );

@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { Settings, Download, Monitor, Type, Users, Zap, Clock } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
+import MobileNav from "@/components/layout/MobileNav";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
@@ -35,25 +36,25 @@ const Export = () => {
         <meta name="description" content="Configure export settings for your viral clips." />
       </Helmet>
 
-      <div className="min-h-screen bg-background">
+      <div className="min-h-[100dvh] bg-background pb-24 md:pb-16">
         <Navbar />
 
-        <main className="pt-28 pb-16 px-4">
+        <main className="pt-20 sm:pt-28 pb-8 px-3 sm:px-4">
           <div className="max-w-2xl mx-auto">
             {/* Header */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-center mb-12"
+              className="text-center mb-6 sm:mb-12"
             >
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-4">
-                <Settings className="w-4 h-4 text-primary" />
-                <span className="text-sm text-primary font-medium">Export Settings</span>
+              <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-primary/10 border border-primary/20 mb-3 sm:mb-4">
+                <Settings className="w-3 h-3 sm:w-4 sm:h-4 text-primary" />
+                <span className="text-xs sm:text-sm text-primary font-medium">Export Settings</span>
               </div>
-              <h1 className="text-3xl sm:text-4xl font-bold mb-4">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-4">
                 Configure Your <span className="gradient-text">Export</span>
               </h1>
-              <p className="text-muted-foreground max-w-xl mx-auto">
+              <p className="text-sm sm:text-base text-muted-foreground max-w-xl mx-auto px-2">
                 Fine-tune your clip settings before exporting
               </p>
             </motion.div>
@@ -63,21 +64,21 @@ const Export = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="glass-card p-6 space-y-8"
+              className="glass-card p-4 sm:p-6 space-y-6 sm:space-y-8"
             >
               {/* Duration */}
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                      <Clock className="w-5 h-5 text-primary" />
+              <div className="space-y-3 sm:space-y-4">
+                <div className="flex items-center justify-between gap-2">
+                  <div className="flex items-center gap-2 sm:gap-3">
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                      <Clock className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
                     </div>
                     <div>
-                      <Label className="text-base font-medium">Clip Duration</Label>
-                      <p className="text-sm text-muted-foreground">Target length for each clip</p>
+                      <Label className="text-sm sm:text-base font-medium">Clip Duration</Label>
+                      <p className="text-xs sm:text-sm text-muted-foreground">Target length</p>
                     </div>
                   </div>
-                  <span className="text-lg font-bold text-primary">{settings.duration[0]}s</span>
+                  <span className="text-base sm:text-lg font-bold text-primary">{settings.duration[0]}s</span>
                 </div>
                 <Slider
                   value={settings.duration}
@@ -94,21 +95,21 @@ const Export = () => {
               </div>
 
               {/* Subtitle Style */}
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                    <Type className="w-5 h-5 text-primary" />
+              <div className="flex items-center justify-between gap-2">
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                    <Type className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
                   </div>
                   <div>
-                    <Label className="text-base font-medium">Subtitle Style</Label>
-                    <p className="text-sm text-muted-foreground">Caption template preset</p>
+                    <Label className="text-sm sm:text-base font-medium">Subtitle Style</Label>
+                    <p className="text-xs sm:text-sm text-muted-foreground hidden sm:block">Caption template preset</p>
                   </div>
                 </div>
                 <Select
                   value={settings.subtitleStyle}
                   onValueChange={(value) => setSettings({ ...settings, subtitleStyle: value })}
                 >
-                  <SelectTrigger className="w-40 bg-muted/50 border-border">
+                  <SelectTrigger className="w-28 sm:w-40 bg-muted/50 border-border text-xs sm:text-sm">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -121,21 +122,21 @@ const Export = () => {
               </div>
 
               {/* FPS */}
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                    <Monitor className="w-5 h-5 text-primary" />
+              <div className="flex items-center justify-between gap-2">
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                    <Monitor className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
                   </div>
                   <div>
-                    <Label className="text-base font-medium">Frame Rate</Label>
-                    <p className="text-sm text-muted-foreground">Output video FPS</p>
+                    <Label className="text-sm sm:text-base font-medium">Frame Rate</Label>
+                    <p className="text-xs sm:text-sm text-muted-foreground hidden sm:block">Output video FPS</p>
                   </div>
                 </div>
                 <Select
                   value={settings.fps}
                   onValueChange={(value) => setSettings({ ...settings, fps: value })}
                 >
-                  <SelectTrigger className="w-40 bg-muted/50 border-border">
+                  <SelectTrigger className="w-28 sm:w-40 bg-muted/50 border-border text-xs sm:text-sm">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -147,15 +148,15 @@ const Export = () => {
               </div>
 
               {/* Toggle Settings */}
-              <div className="space-y-4 pt-4 border-t border-border">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-secondary/10 flex items-center justify-center">
-                      <Monitor className="w-5 h-5 text-secondary" />
+              <div className="space-y-3 sm:space-y-4 pt-3 sm:pt-4 border-t border-border">
+                <div className="flex items-center justify-between gap-2">
+                  <div className="flex items-center gap-2 sm:gap-3">
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-secondary/10 flex items-center justify-center shrink-0">
+                      <Monitor className="w-4 h-4 sm:w-5 sm:h-5 text-secondary" />
                     </div>
                     <div>
-                      <Label className="text-base font-medium">Auto Crop 9:16</Label>
-                      <p className="text-sm text-muted-foreground">Smart face-tracking crop</p>
+                      <Label className="text-sm sm:text-base font-medium">Auto Crop 9:16</Label>
+                      <p className="text-xs sm:text-sm text-muted-foreground">Smart face-tracking</p>
                     </div>
                   </div>
                   <Switch
@@ -164,14 +165,14 @@ const Export = () => {
                   />
                 </div>
 
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-highlight-yellow/10 flex items-center justify-center">
-                      <Zap className="w-5 h-5 text-highlight-yellow" />
+                <div className="flex items-center justify-between gap-2">
+                  <div className="flex items-center gap-2 sm:gap-3">
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-highlight-yellow/10 flex items-center justify-center shrink-0">
+                      <Zap className="w-4 h-4 sm:w-5 sm:h-5 text-highlight-yellow" />
                     </div>
                     <div>
-                      <Label className="text-base font-medium">Highlight Keywords</Label>
-                      <p className="text-sm text-muted-foreground">Emphasize important words</p>
+                      <Label className="text-sm sm:text-base font-medium">Highlight Keywords</Label>
+                      <p className="text-xs sm:text-sm text-muted-foreground">Emphasize words</p>
                     </div>
                   </div>
                   <Switch
@@ -180,14 +181,14 @@ const Export = () => {
                   />
                 </div>
 
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                      <Users className="w-5 h-5 text-primary" />
+                <div className="flex items-center justify-between gap-2">
+                  <div className="flex items-center gap-2 sm:gap-3">
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                      <Users className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
                     </div>
                     <div>
-                      <Label className="text-base font-medium">Speaker Detection</Label>
-                      <p className="text-sm text-muted-foreground">Auto-switch between speakers</p>
+                      <Label className="text-sm sm:text-base font-medium">Speaker Detection</Label>
+                      <p className="text-xs sm:text-sm text-muted-foreground">Auto-switch speakers</p>
                     </div>
                   </div>
                   <Switch
@@ -203,18 +204,21 @@ const Export = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="mt-8 text-center"
+              className="mt-6 sm:mt-8 text-center"
             >
-              <Button variant="gradient" size="xl" onClick={handleExport} className="gap-2 w-full sm:w-auto">
-                <Download className="w-5 h-5" />
-                Export All Clips (1080x1920)
+              <Button variant="gradient" size="lg" onClick={handleExport} className="gap-2 w-full">
+                <Download className="w-4 h-4 sm:w-5 sm:h-5" />
+                <span className="sm:hidden">Export Clips (1080x1920)</span>
+                <span className="hidden sm:inline">Export All Clips (1080x1920)</span>
               </Button>
-              <p className="text-sm text-muted-foreground mt-3">
+              <p className="text-xs sm:text-sm text-muted-foreground mt-2 sm:mt-3">
                 MP4 format with hardcoded subtitles
               </p>
             </motion.div>
           </div>
         </main>
+        
+        <MobileNav />
       </div>
     </>
   );

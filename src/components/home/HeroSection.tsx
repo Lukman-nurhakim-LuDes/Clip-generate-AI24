@@ -22,11 +22,11 @@ const HeroSection = () => {
   ];
 
   return (
-    <section className="min-h-screen relative flex items-center justify-center px-4 pt-24 overflow-hidden">
+    <section className="min-h-[100dvh] relative flex items-center justify-center px-4 pt-20 sm:pt-24 pb-8 overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse-glow" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-secondary/10 rounded-full blur-3xl animate-pulse-glow" style={{ animationDelay: "1s" }} />
+        <div className="absolute top-1/4 left-1/4 w-48 sm:w-96 h-48 sm:h-96 bg-primary/10 rounded-full blur-3xl animate-pulse-glow" />
+        <div className="absolute bottom-1/4 right-1/4 w-40 sm:w-80 h-40 sm:h-80 bg-secondary/10 rounded-full blur-3xl animate-pulse-glow" style={{ animationDelay: "1s" }} />
       </div>
 
       <div className="max-w-5xl mx-auto text-center relative z-10">
@@ -46,7 +46,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-4xl sm:text-5xl md:text-7xl font-extrabold leading-tight mb-6"
+          className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-4 sm:mb-6"
         >
           Paste YouTube Link
           <br />
@@ -58,7 +58,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-12"
+          className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 sm:mb-12 px-2"
         >
           Transform any YouTube video into scroll-stopping TikTok & Shorts clips.
           AI detects viral moments, adds captions, and reframes automatically.
@@ -69,24 +69,24 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="max-w-2xl mx-auto mb-8"
+          className="max-w-2xl mx-auto mb-6 sm:mb-8"
         >
-          <div className="glass-card p-2 flex flex-col sm:flex-row gap-2">
+          <div className="glass-card p-2 flex flex-col gap-2">
             <div className="flex-1 relative">
               <Play className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
               <Input
                 type="url"
-                placeholder="Paste YouTube URL here..."
+                placeholder="Paste YouTube URL..."
                 value={youtubeUrl}
                 onChange={(e) => setYoutubeUrl(e.target.value)}
-                className="pl-12 h-14 bg-muted/50 border-0 text-base rounded-xl"
+                className="pl-12 h-12 sm:h-14 bg-muted/50 border-0 text-sm sm:text-base rounded-xl"
               />
             </div>
             <Button
               variant="gradient"
               size="lg"
               onClick={handleAnalyze}
-              className="gap-2 min-w-[160px]"
+              className="gap-2 w-full h-12 sm:h-14"
             >
               Analyze
               <ArrowRight className="w-5 h-5" />
@@ -112,31 +112,31 @@ const HeroSection = () => {
           ))}
         </motion.div>
 
-        {/* Demo Preview */}
+        {/* Demo Preview - Hidden on very small screens */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.5 }}
-          className="mt-16"
+          className="mt-8 sm:mt-16 hidden sm:block"
         >
-          <div className="glass-card p-4 sm:p-6 max-w-4xl mx-auto">
+          <div className="glass-card p-3 sm:p-6 max-w-4xl mx-auto">
             <div className="aspect-video rounded-xl bg-gradient-to-br from-muted to-background overflow-hidden relative">
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="flex gap-4">
+                <div className="flex gap-2 sm:gap-4">
                   {[1, 2, 3].map((i) => (
                     <motion.div
                       key={i}
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ delay: 0.7 + i * 0.1 }}
-                      className="w-24 sm:w-32 aspect-[9/16] rounded-xl bg-gradient-to-b from-primary/20 to-secondary/20 border border-border/50 flex items-center justify-center"
+                      className="w-16 sm:w-24 md:w-32 aspect-[9/16] rounded-lg sm:rounded-xl bg-gradient-to-b from-primary/20 to-secondary/20 border border-border/50 flex items-center justify-center"
                     >
-                      <Play className="w-6 h-6 text-primary/50" />
+                      <Play className="w-4 h-4 sm:w-6 sm:h-6 text-primary/50" />
                     </motion.div>
                   ))}
                 </div>
               </div>
-              <div className="absolute bottom-4 left-4 right-4 flex items-center gap-2">
+              <div className="absolute bottom-2 sm:bottom-4 left-2 sm:left-4 right-2 sm:right-4 flex items-center gap-2">
                 <div className="h-1 flex-1 bg-muted rounded-full overflow-hidden">
                   <motion.div
                     initial={{ width: 0 }}
